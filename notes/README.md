@@ -45,6 +45,14 @@ $ brew tap eosio/eosio
 $ brew install eosio
 ```
 
+Q: Docker 启动节点后，如何检测节点状态。
+
+> A: 首先确保安装好 cleos，然后多次执行如下命令，如果 head_block_num 一直在变化，证明节点在同步数据中。
+
+``` bash
+$ cleos -u http://127.0.0.1:8888 get info
+```
+
 Q: `cleos -u http://127.0.0.1:8888 get info` chain_id 不同，head_block_num 为 1。
 
 > A: 正确的 chain_id 为 `3e862a165d4576aef33af5fec649073dc51362a97d8df43fc6a4331fc1c6764f`。使用这个 [genesis.json](http://sc1.code2048.com/prsnode0306/genesis.json) 覆盖，然后重启 Docker。
