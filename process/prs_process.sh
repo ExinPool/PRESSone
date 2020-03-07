@@ -9,7 +9,7 @@
 # Date: 2020-03-07
 # Time: 15:58:27
 
-LOG_FILE="process_state.log"
+LOG_FILE="prs_process.log"
 PROCESS="nodeos"
 PROCESS_NUM=1
 SERVICE="PRESSone"
