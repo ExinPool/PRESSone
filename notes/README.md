@@ -35,6 +35,36 @@ Q: cleos 命令哪里来？
 
 > A: 参考 [https://github.com/EOSIO/eos/blob/master/README.md](https://github.com/EOSIO/eos/blob/master/README.md).
 
+``` bash
+# Ubuntu 18.04 Package Install
+$ wget https://github.com/eosio/eos/releases/download/v2.0.3/eosio_2.0.3-1-ubuntu-18.04_amd64.deb
+$ sudo apt install ./eosio_2.0.3-1-ubuntu-18.04_amd64.deb
+
+# Mac OS X Brew Install
+$ brew tap eosio/eosio
+$ brew install eosio
+```
+
+Q: `cleos -u http://127.0.0.1:8888 get info` chain_id 不同，head_block_num 为 1。
+
+> A: 正确的 chain_id 为 `3e862a165d4576aef33af5fec649073dc51362a97d8df43fc6a4331fc1c6764f`。使用这个 [genesis.json](http://sc1.code2048.com/prsnode0306/genesis.json) 覆盖，然后重启 Docker。
+
+Q: 抵押余额没有增加。
+
+> A: 支付超时，耐心等待处理。
+
+Q: 100W PRS 抵押未完成，可以启动节点吗？
+
+> A: 可以，100W PRS 未完全抵押，只影响节点出块，不影响同步数据。
+
+Q: 防火墙开放哪些端口？
+
+> A: 出站全开放，入站开放 8888、9876。
+
+Q: sudo: ./runservice.sh: command not found
+
+> A: chmod +x runservice.sh，将文件改成可执行。
+
 ## Contributing
 
 To be continued.
