@@ -31,7 +31,7 @@ sudo git clone https://github.com/ExinPool/PRESSone
 
 ### Setup
 
-Search `[7000000012](https://mixin.one/codes/4d792128-1db8-4baf-8d90-d0d8189a4a7e)` in [Mixin Messenger](https://mixin.one/messenger) and add **Webhook** as contact.
+Search `7000000012` in [Mixin Messenger](https://mixin.one/messenger) and add **[Webhook](https://mixin.one/codes/4d792128-1db8-4baf-8d90-d0d8189a4a7e)** as contact.
 
 Invite Webhook and somebody who want to receive monitor message to a small group in Mixin Messenger. Open Webhook in the group, you can see the access token.
 
