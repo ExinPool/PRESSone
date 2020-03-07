@@ -65,6 +65,22 @@ Q: sudo: ./runservice.sh: command not found
 
 > A: chmod +x runservice.sh，将文件改成可执行。
 
+Q: Docker 基本操作。
+
+``` bash
+# 查看进程
+$ sudo docker ps -a
+
+# 查看日志
+$ sudo docker logs -f $CONTAINER_ID
+
+# 重启 CONTAINER
+$ sudo docker restart $CONTAINER_ID
+
+# 关闭 CONTAINER
+$ sudo docker stop $CONTAINER_ID
+```
+
 ## Contributing
 
 To be continued.
