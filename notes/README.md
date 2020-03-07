@@ -2,7 +2,7 @@
 
 > PRESSone Notes.
 
-![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ## Table of Contents
 
@@ -17,8 +17,15 @@
 
 Q: 服务器配置文件包下载地址？
 
-> A：http://sc1.code2048.com/prsnode/yourbpname.tar.gz
-> 把 yourbpname 替换为您的节点，比如我们是 ExinPool，下载地址是 http://sc1.code2048.com/prsnode/exinpool.tar.gz，可以使用 wget http://sc1.code2048.com/prsnode/exinpool.tar.gz 下载。
+A：http://sc1.code2048.com/prsnode/yourbpname.tar.gz
+
+``` bash
+把 yourbpname 替换为您的节点，比如我们是 ExinPool，下载地址是
+
+http://sc1.code2048.com/prsnode/exinpool.tar.gz
+
+可以使用 wget http://sc1.code2048.com/prsnode/exinpool.tar.gz 下载。
+```
 
 ## Contributing
 
