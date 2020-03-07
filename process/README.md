@@ -31,13 +31,13 @@ sudo git clone https://github.com/ExinPool/PRESSone
 
 ### Setup
 
-Search `7000000012` in Mixin Messenger and add **Webhook** as contact.
+Search `[7000000012](https://mixin.one/codes/4d792128-1db8-4baf-8d90-d0d8189a4a7e)` in [Mixin Messenger](https://mixin.one/messenger) and add **Webhook** as contact.
 
-Invite Webhook and somebody who want to receive monitor message to a small group. Open Webhook in the group, you can see the access token.
+Invite Webhook and somebody who want to receive monitor message to a small group in Mixin Messenger. Open Webhook in the group, you can see the access token.
 
-> Note: Only the owner of the group can get the access token via Webhook.
+> Note: The access token is only available for the owner of the group.
 
-Change some varibles like this.
+Change some varibles like this in the `prs_process.sh`.
 
 ``` bash
 LOG_FILE="prs_process.log"
@@ -48,7 +48,7 @@ WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
 ACCESS_TOKEN=""
 ```
 
-Add crontab like this.
+Add crontab like this in the server.
 
 ``` bash
 # PRESSone node process monitor
