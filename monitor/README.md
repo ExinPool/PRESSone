@@ -52,7 +52,7 @@ Add crontab like this in the server.
 
 ``` bash
 # PRESSone node blocks monitor
-* * * * * nohup bash /data/monitor/exinpool/PRESSone/monitor/prs_process.sh >> /data/monitor/exinpool/PRESSone/monitor/prs_blocks.log &
+* * * * * nohup bash /data/monitor/exinpool/PRESSone/monitor/prs_blocks.sh >> /data/monitor/exinpool/PRESSone/monitor/prs_blocks.log &
 ```
 
 The crontab will run every minute then you can check the log in `prs_blocks.log`.
