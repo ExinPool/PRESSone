@@ -17,7 +17,7 @@
 
 Q: 服务器配置文件包下载地址？
 
-A：http://sc1.code2048.com/prsnode/yourbpname.tar.gz
+> A：http://sc1.code2048.com/prsnode/yourbpname.tar.gz
 
 ``` bash
 把 yourbpname 替换为您的节点，比如我们是 ExinPool，下载地址是
