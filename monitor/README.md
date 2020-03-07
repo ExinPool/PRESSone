@@ -1,6 +1,6 @@
-# PRESSone Node Process Monitor
+# PRESSone Node Blocks Monitor
 
-> PRESSone node process monitor tools.
+> PRESSone node blocks monitor tools.
 
 [![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger) [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
@@ -37,30 +37,30 @@ Invite Webhook and somebody who want to receive monitor message to a small group
 
 > Note: The access token is only available for the owner of the group.
 
-Change some varibles like this in the `prs_process.sh`.
+Change some varibles like this in the `prs_blocks.sh`.
 
 ``` bash
-LOG_FILE="prs_process.log"
-PROCESS="nodeos"
-PROCESS_NUM=1
+LOG_FILE="prs_blocks.log"
 SERVICE="PRESSone"
 WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
 ACCESS_TOKEN=""
+REMOTE_NODE="http://51.68.201.144:8888"
+LOCAL_NODE="http://127.0.0.1:8888"
 ```
 
 Add crontab like this in the server.
 
 ``` bash
-# PRESSone node process monitor
-* * * * * nohup bash /data/monitor/exinpool/PRESSone/process/prs_process.sh >> /data/monitor/exinpool/PRESSone/process/prs_process.log &
+# PRESSone node blocks monitor
+* * * * * nohup bash /data/monitor/exinpool/PRESSone/monitor/prs_process.sh >> /data/monitor/exinpool/PRESSone/monitor/prs_blocks.log &
 ```
 
-The crontab will run every minute then you can check the log in `prs_process.log`.
+The crontab will run every minute then you can check the log in `prs_blocks.log`.
 
 ## Features
 
-- Monitor PRESSone node process
-- Send alarm message when node process is abnormal
+- Monitor PRESSone node blocks
+- Send alarm message when node blocks is full sync
 - Send alarm message via Webhook which based on Mixin API
 
 ## Contributing

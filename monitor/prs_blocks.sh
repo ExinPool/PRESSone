@@ -9,7 +9,7 @@
 # Date: 2020-03-07
 # Time: 15:58:27
 
-LOG_FILE="blocks_state.log"
+LOG_FILE="prs_blocks.log"
 SERVICE="PRESSone"
 WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
 ACCESS_TOKEN=""
