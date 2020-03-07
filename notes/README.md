@@ -15,6 +15,10 @@
 
 ## Notes
 
+Q: 服务器系统有推荐的吗？
+
+> A: 建议使用 Ubuntu 16.04 以上的系统。
+
 Q: 服务器配置文件包下载地址？
 
 > A: http://sc1.code2048.com/prsnode/yourbpname.tar.gz
@@ -67,7 +71,7 @@ Q: 100W PRS 抵押未完成，可以启动节点吗？
 
 Q: 防火墙开放哪些端口？
 
-> A: 出站全开放，入站开放 8888、9876。
+> A: 出站全开放，入站开放增加 8888、9876。当然不能把 SSH 端口删掉了。
 
 Q: sudo: ./runservice.sh: command not found
 
