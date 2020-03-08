@@ -24,6 +24,9 @@ if [ ${ABS} -lt 100 ]
 then
     LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${SERVICE} node is full sync."
     echo $LOG >> $LOG_FILE
+else
+    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${SERVICE} node is not full sync."
+    echo $LOG >> $LOG_FILE
     curl ${WEBHOOK_URL}=${ACCESS_TOKEN} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$LOG"'"}' > /dev/null 2>&1
     if [ $? -eq 0 ]
     then
@@ -33,7 +36,4 @@ then
         LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
         echo $LOG >> $LOG_FILE
     fi
-else
-    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${SERVICE} node is not full sync."
-    echo $LOG >> $LOG_FILE
 fi
