@@ -9,31 +9,35 @@
 # Date: 2020-03-07
 # Time: 15:58:27
 
-LOG_FILE="prs_blocks.log"
-SERVICE="PRESSone"
-WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
-ACCESS_TOKEN=""
-REMOTE_NODE="http://51.68.201.144:8888"
-LOCAL_NODE="http://127.0.0.1:8888"
+# load the config library functions
+source config.shlib
 
-REMOTE_BLOCK=`cleos -u ${REMOTE_NODE} get info | grep -w head_block_num | awk -F': ' '{print $2}' | sed "s/,//g"`
-LOCAL_BLOCK=`cleos -u ${LOCAL_NODE} get info | grep -w head_block_num | awk -F': ' '{print $2}' | sed "s/,//g"`
-ABS=`echo $((${REMOTE_BLOCK}-${LOCAL_BLOCK})) | sed 's/-//'`
+# load configuration
+service="$(config_get SERVICE)"
+remote_node="$(config_get REMOTE_NODE)"
+local_node="$(config_get LOCAL_NODE)"
+log_file="$(config_get LOG_FILE)"
+webhook_url="$(config_get WEBHOOK_URL)"
+access_token="$(config_get ACCESS_TOKEN)"
 
-if [ ${ABS} -lt 100 ]
+remote_block=`cleos -u ${remote_node} get info | grep -w head_block_num | awk -F': ' '{print $2}' | sed "s/,//g"`
+local_block=`cleos -u ${local_node} get info | grep -w head_block_num | awk -F': ' '{print $2}' | sed "s/,//g"`
+blocks_abs=`echo $((${remote_block}-${local_block})) | sed 's/-//'`
+
+if [ ${blocks_abs} -lt 100 ]
 then
-    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${SERVICE} node is full sync."
-    echo $LOG >> $LOG_FILE
+    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${service} node is full sync."
+    echo $log >> $log_file
 else
-    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${SERVICE} node is not full sync."
-    echo $LOG >> $LOG_FILE
-    curl ${WEBHOOK_URL}=${ACCESS_TOKEN} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$LOG"'"}' > /dev/null 2>&1
+    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${service} node is not full sync."
+    echo $log >> $log_file
+    curl ${webhook_url}=${access_token} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$log"'"}' > /dev/null 2>&1
     if [ $? -eq 0 ]
     then
-        LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin successfully."
-        echo $LOG >> $LOG_FILE
+        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin successfully."
+        echo $log >> $log_file
     else
-        LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
-        echo $LOG >> $LOG_FILE
+        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
+        echo $log >> $log_file
     fi
 fi
