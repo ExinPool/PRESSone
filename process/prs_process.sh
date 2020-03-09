@@ -9,29 +9,32 @@
 # Date: 2020-03-07
 # Time: 15:58:27
 
-LOG_FILE="prs_process.log"
-PROCESS="nodeos"
-PROCESS_NUM=1
-SERVICE="PRESSone"
-WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
-ACCESS_TOKEN=""
+# load the config library functions
+source config.shlib
 
-process=`ps -ef | grep ${PROCESS} | grep -v grep | wc -l`
+# load configuration
+service="$(config_get SERVICE)"
+process="$(config_get PROCESS)"
+process_num="$(config_get PROCESS_NUM)"
+process_num_var=`ps -ef | grep ${process} | grep -v grep | wc -l`
+log_file="$(config_get LOG_FILE)"
+webhook_url="$(config_get WEBHOOK_URL)"
+access_token="$(config_get ACCESS_TOKEN)"
 
-if [ $process -eq ${PROCESS_NUM} ]
+if [ ${process_num} -eq ${process_num_var} ]
 then
-    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${SERVICE} node process is normal."
-    echo $LOG >> $LOG_FILE
+    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${service} node process is normal."
+    echo $log >> $log_file
 else
-    LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${SERVICE} node process is abnormal."
-    echo $LOG >> $LOG_FILE
-    curl ${WEBHOOK_URL}=${ACCESS_TOKEN} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$LOG"'"}' > /dev/null 2>&1
+    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${service} node process is abnormal."
+    echo $log >> $log_file
+    curl ${webhook_url}=${access_token} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$log"'"}' > /dev/null 2>&1
     if [ $? -eq 0 ]
     then
-        LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin successfully."
-        echo $LOG >> $LOG_FILE
+        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin successfully."
+        echo $log >> $log_file
     else
-        LOG="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
-        echo $LOG >> $LOG_FILE
+        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
+        echo $log >> $log_file
     fi
 fi
