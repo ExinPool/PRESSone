@@ -37,25 +37,25 @@ Invite Webhook and somebody who want to receive monitor message to a small group
 
 > Note: The access token is only available for the owner of the group.
 
-Change some varibles like this in the `prs_blocks.sh`.
+Copy `config.cfg.defaults` to `config.cfg` and change some varibles like this in the `config.cfg`.
 
 ``` bash
-LOG_FILE="prs_blocks.log"
-SERVICE="PRESSone"
-WEBHOOK_URL="https://webhook.exinwork.com/api/send?access_token"
-ACCESS_TOKEN=""
-REMOTE_NODE="http://51.68.201.144:8888"
-LOCAL_NODE="http://127.0.0.1:8888"
+SERVICE=PRESSone
+REMOTE_NODE=http://51.68.201.144:8888
+LOCAL_NODE=http://127.0.0.1:8888
+LOG_FILE=prs_blocks.log
+WEBHOOK_URL=https://webhook.exinwork.com/api/send?access_token
+ACCESS_TOKEN=YOUR_ACCESS_TOKEN
 ```
 
 Add crontab like this in the server.
 
 ``` bash
 # PRESSone node blocks monitor
-* * * * * nohup bash /data/monitor/exinpool/PRESSone/monitor/prs_blocks.sh >> /data/monitor/exinpool/PRESSone/monitor/prs_blocks.log &
+* * * * * cd /data/monitor/exinpool/PRESSone/monitor && bash prs_blocks.sh >> prs_blocks.log &
 ```
 
-The crontab will run every minute then you can check the log in `prs_blocks.log`.
+The crontab will run every minute then you can check the log in the `prs_blocks.log`.
 
 ## Features
 
