@@ -26,18 +26,18 @@ blocks_abs=`echo $((${remote_block}-${local_block})) | sed 's/-//'`
 
 if [ ${blocks_abs} -lt 100 ]
 then
-    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO ${service} node is full sync."
+    log="`date '+%Y-%m-%d %H:%M:%S'` UTC `hostname` `whoami` INFO ${service} node is full sync."
     echo $log >> $log_file
 else
-    log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` ERROR ${service} node is not full sync."
+    log="`date '+%Y-%m-%d %H:%M:%S'` UTC `hostname` `whoami` ERROR ${service} node is not full sync."
     echo $log >> $log_file
     curl ${webhook_url}=${access_token} -XPOST -H 'Content-Type: application/json' -d '{"category":"PLAIN_TEXT","data":"'"$log"'"}' > /dev/null 2>&1
     if [ $? -eq 0 ]
     then
-        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin successfully."
+        log="`date '+%Y-%m-%d %H:%M:%S'` UTC `hostname` `whoami` INFO send mixin successfully."
         echo $log >> $log_file
     else
-        log="`date '+%Y-%m-%d %H:%M:%S'` `hostname` `whoami` INFO send mixin failed."
+        log="`date '+%Y-%m-%d %H:%M:%S'` UTC `hostname` `whoami` INFO send mixin failed."
         echo $log >> $log_file
     fi
 fi
